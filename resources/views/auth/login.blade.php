@@ -44,4 +44,9 @@
             </x-primary-button>
         </div>
     </form>
+    <form method="GET" action="{{ route('register') }}">
+        <x-primary-button class="ml-3">
+                {{ __('新規登録') }}
+        </x-primary-button>
+    </form>
 </x-guest-layout>
