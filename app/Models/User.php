@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
 use App\Models\like;
 use App\Models\comment;
+use App\Http\Requests\PostRequest;
 
 class User extends Authenticatable
 {

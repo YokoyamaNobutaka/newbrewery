@@ -11,17 +11,19 @@
         <x-app-layout>
         <x-slot name="header">
         </x-slot>
-            <h1 class="post">
-                {{ $post->name }}
-            </h1>
+            <div class="mr-2.5 text-lg ...">
+                <p class="post">
+                    酒の名前:{{ $post->name }}
+                </p>
+            </div>
             <div class="content">
-                <div class="content__post">
-                    <p class='area'>{{ $post->area }}</p>
-                    <p class='rice'>{{ $post->rice }}</p>
-                    <p class='flavor'>{{ $post->flavor }}</p>
-                    <p class='taste'>{{ $post->taste }}</p>
-                    <p class='alcholcontent'>{{ $post->alcholcontent }}</p>
-                    <h3 class='match'>{{ $post->match }}</h3>   
+                <div class="content__post mr-2.5 ... text-lg ...">
+                    <p class='area'>原産地：{{ $post->area }}</p>
+                    <p class='rice'>米の種類：{{ $post->rice }}</p>
+                    <p class='flavor'>辛口or甘口：{{ $post->flavor }}</p>
+                    <p class='taste'>すっきりorまろやか：{{ $post->taste }}</p>
+                    <p class='alcholcontent'>アルコール％：{{ $post->alcholcontent }}</p>
+                    <h3 class='match'>合う料理：{{ $post->match }}</h3>   
                 </div>
             </div>
             <div>
@@ -54,9 +56,23 @@
                     <button type="submit">コメントする</button>
                 </form>
             </div> 
+            <div class="edit"><a href="/posts/{{ $post->id }}/edit">編集画面</a></div>
+            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
+            </form>
             <div class="footer">
                 <a href="/">戻る</a>
             </div>
         </x-app-layout>
+         <script>
+                function deletePost(id) {
+                'use strict'
+                    if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                        }
+                }
+            </script>
     </body>
 </html><!--詳細画面 -->

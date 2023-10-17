@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\comment;
@@ -35,5 +33,21 @@ class PostController extends Controller
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
     }
+    public function edit(Post $post)
+    {
+        return view('posts.edit')->with(['post' => $post]);
+    }//編集画面
+    public function update(Request $request, Post $post)
+    {
+        $input_post = $request['post'];
+        $post->fill($input_post)->save();
+    
+        return redirect('/posts/' . $post->id);
+    }//編集画面
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return redirect('/');
+    }//削除
 }
 //投稿画面：保存用
