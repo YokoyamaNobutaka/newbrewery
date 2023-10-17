@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/likes/{post}', [LikeController::class, 'like'])->name('like');
     /*いいね機能*/
     Route::get('/unlike/{post}', [LikeController::class, 'unlike'])->name('unlike');
+    
+    Route::post('s3', [PostController::class, 'uploadS3'])->name('s3');
 });
 
 require __DIR__.'/auth.php';

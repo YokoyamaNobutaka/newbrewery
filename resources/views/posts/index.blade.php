@@ -27,6 +27,11 @@
                         </div>
                     @endforeach
                 </div>
+                <form action="{{ route('s3') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" id="">
+                <input type="submit" value="アップロード">
+                </form>
             </x-app-layout>
            
     </body>

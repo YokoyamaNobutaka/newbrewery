@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\comment;
 use App\Models\like;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 /*ModelsのPostというモデルを使用*/
 
 class PostController extends Controller
@@ -49,5 +50,26 @@ class PostController extends Controller
         $post->delete();
         return redirect('/');
     }//削除
+    
+    // S3へのファイルアップロード
+    public function uploadS3(Request $request)
+    {
+        // バリデーション
+        $request->validate(
+            [
+                'file' => 'required|file',
+            ]
+        );
+
+        // S3へファイルをアップロード
+        $result = Storage::disk('s3')->put('/', $request->file('file'));
+
+        // アップロードの成功判定
+        if ($result) {
+            return 'アップロード成功';
+        }else {
+            return 'アップロード失敗';
+        }
+    }
 }
 //投稿画面：保存用
