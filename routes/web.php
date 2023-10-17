@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
     //投稿画面：*/posts/createをgetメソッド取得したらPostController::classの'create'を実行*/
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+    Route::put('/posts/{post}', [PostController::class, 'update'])->name('post.update');
+    Route::delete('/posts/{post}', [PostController::class, 'delete'])->name('post.delete');
     Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
     //詳細画面：*/posts/{post}をgetメソッド取得したらPostController::classの'show'を実行*/
     Route::post('/posts', [PostController::class, 'store'])->name('post.store');

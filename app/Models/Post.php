@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use App\Models\comment;
 use App\Models\User;
 use App\Models\like;
+use App\Http\Requests\PostRequest;
 
 class Post extends Model
 {

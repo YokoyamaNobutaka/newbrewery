@@ -10,11 +10,11 @@
         <x-app-layout>
         <x-slot name="header">
             </x-slot>
-                <h1>brewery</h1>
-                <a href='/posts/create'>投稿</a><!--投稿画面へ飛ぶルーティングcreate.blade.php-->
+                <h1 class="bg-cyan-400">brewery</h1>
+                <a href='/posts/create' class="bg-sky-700">投稿</a><!--投稿画面へ飛ぶルーティングcreate.blade.php-->
                 <div class='posts flex'>
                     @foreach ($posts as $post)
-                        <div class='post'><!-- 各日本酒の情報を表示 -->
+                        <div class='post container border'><!-- 各日本酒の情報を表示 -->
                             <h2 class='name'><!-- 記事詳細画面に行くためのリンクを日本酒名：nameに付与各ID名に飛ぶ-->
                                 <a href="/posts/{{ $post->id }}">{{ $post->name }}</a>
                             </h2>
@@ -28,5 +28,6 @@
                     @endforeach
                 </div>
             </x-app-layout>
+           
     </body>
 </html><!-- 一覧スタート画面 -->
